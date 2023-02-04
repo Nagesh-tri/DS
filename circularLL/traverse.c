@@ -21,7 +21,7 @@ struct node* printcll(struct node* tail){
 void contElements(struct node* tail){
     struct node* temp=tail->next;
     int count=0;
-    while (temp !=NULL)
+    while (temp !=tail)
     {
         temp=temp->next;
         count++;

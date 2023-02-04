@@ -76,11 +76,11 @@ struct node* dellast(struct node* tail){
     tail=temp;
     return tail;
 }
-//not working we will see leter what is the issue
+
 void contElements(struct node* tail){
     struct node* temp=tail->next;
     int count=0;
-    while (temp !=NULL)
+    while (temp !=tail)
     {
         temp=temp->next;
         count++;
