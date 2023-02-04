@@ -1,52 +1,89 @@
-/*
-circular singly LL:
-it is similar to the singly linked list exceot that the last node of the circular singly LL
-points to the first node.
-create: 
-jsut create singly LL and at the last node->next replace NULL with head;
-
-circular doubly LL:
-first node is pointing to last node and last node is pointing to first node
-
-*/
 #include<stdio.h>
 #include<stdlib.h>
 //circular singly LL:
-struct nodeS
+struct node
 {
     int data;
-    struct nodeS* next;
+    struct node* next;
 };
-struct nodeS* circularSingly(int data){
-    struct nodeS* temp=malloc(sizeof(struct nodeS));
-    temp->data = data;
-    temp->next=temp;
+struct node* addToEmpty(int data){
+    struct node* temp = malloc(sizeof(struct node));
+    temp->data= data;
+    temp->next= temp;
     return temp;
 }
-//Circular doubly LL:
-struct nodeD{
-    struct nodeD* prev;
-    int data; 
-    struct nodeD* next; 
-};
-struct nodeD* circularDoubly(int data){
-    struct nodeD* temp = malloc(sizeof(struct nodeD));
-    temp->data = data;
-    temp->prev = temp;
-    return temp;
+//
+struct node* addTobeg(struct node* tail,int data){
+    struct node* newP= malloc(sizeof(struct node));
+    newP->data =data;
+    newP->next =tail->next;
+    tail->next =newP;
+    return tail;
+}
+struct node* addAtEnd(struct node* tail, int data){
+    //creating new node
+    struct node* newP = malloc(sizeof(struct node));
+    newP->data = data;
+    newP->next = NULL;
+    newP->next= tail->next;
+    tail->next= newP;
+    tail=newP; //also can do tail=tail->next
+    return tail;
+}
+struct node* addAfterPos(struct node* tail,int data,int pos){
+    //new node
+    struct node* newP = malloc(sizeof(struct node));
+    newP->data = data;
+    newP->next = NULL;
+    struct node* p = tail->next;
+    while (pos>1)
+    {
+        p=  p->next;
+        pos--;
+    }
+    newP->next=p->next;
+    p->next=newP;
+    if (p==tail)
+    {
+        tail=newP;
+    }
+    return tail;
+    
+}
+struct node* printcll(struct node* tail){
+    struct node* p = tail->next;
+    do{
+        printf("%d ", p->data);
+        p=p->next;
+    }while(p != tail->next);
+    printf("\n");
+}
+struct node* delfirst(struct node* tail){
+    struct node* temp;
+    temp=tail->next;
 
+    tail->next=temp->next;
+  
+    free(temp);
+    temp= NULL;
+    return tail;
 }
 
-int main(){
-    int data=34;
-    //we are writing here tail instead of head:
-    struct nodeS* tail;
-    struct nodeS* taild;
-    tail =circularSingly(data);
+void main(){
+    struct node* tail;
+    tail =addToEmpty(45);
+    tail =addTobeg(tail,595);
+    //add at end
 
-    printf("%d\n",tail->data);
-    //doubly: 
-    tail =circularDoubly(data);
-    printf("%d\n",taild->data);
-    return 0;
+    tail=addAtEnd(tail,76);
+    tail=addAtEnd(tail,67);
+
+    printcll(tail);
+    //addd after pos
+    tail= addAfterPos(tail,55,2);
+    printcll(tail);
+    //DEL
+    tail=delfirst(tail);
+    printf("List after delteion: \n");
+    printcll(tail);
 }
