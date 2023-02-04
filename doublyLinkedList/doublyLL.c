@@ -1,3 +1,17 @@
+/*
+Why doubly linked list?
+1:  deletion operation is faster 
+in singly LL if intermidiate node is to be deleted we have need of a 'temp' pointer so that
+referance to previous node may not lost but in doubly LL it has already 'prev' pointer
+
+2: Inserting a new node before a given node is easier in doubly LL
+simler to delterioon
+
+conclusion:  it is clear that whenever it is required to reach the previous node from the 
+given node w/o traversing the list, a doubly LL comes in handy;
+nesso rapid fire 2: 8/10;
+*/
+//731s
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
@@ -8,17 +22,21 @@ struct node {
     int data;
     struct node * next;
 };
+//printing linked list
+void printll(struct node * ptr){
+    while(ptr!=NULL){
+        printf("%d ",ptr->data);
+        ptr=ptr->next;
+    }
+}
 int main(){
     struct node *head=NULL;
     //a pointer for travelsing:
     struct node *ptr;
     head =createList(head);
-    //travelsing the list:
-    ptr=head;
-    while(ptr!=NULL){
-        printf("%d ",ptr->data);
-        ptr=ptr->next;
-    }
+    //printing the list:
+    printll(head);
+    
     return 0;
 }
 struct node * addToEmpty(struct node * head,int data){
