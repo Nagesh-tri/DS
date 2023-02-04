@@ -76,11 +76,26 @@ struct node* dellast(struct node* tail){
     tail=temp;
     return tail;
 }
+//not working we will see leter what is the issue
+void contElements(struct node* tail){
+    struct node* temp=tail->next;
+    int count=0;
+    while (temp !=NULL)
+    {
+        temp=temp->next;
+        count++;
+    }
+    count++;
+    printf("There are %d elements in the List.\n",count);
+    return;
+}
 int main(){
     struct node* tail =NULL;
     tail=createCList(tail);
     printf("\nList before Deletion: ");
     printcll(tail);
+    contElements(tail);
+
 
     tail =dellast(tail);
     printf("List after deletion: ");

@@ -16,3 +16,16 @@ struct node* printcll(struct node* tail){
         p=p->next;
     }while(p != tail->next);
 }
+
+//counting the no of node and print it
+void contElements(struct node* tail){
+    struct node* temp=tail->next;
+    int count=0;
+    while (temp !=NULL)
+    {
+        temp=temp->next;
+        count++;
+    }
+    count++;
+    printf("There are %d elements in the List.\n",count);
+}
