@@ -97,4 +97,7 @@ void main(){
     tail=addAtEnd(tail,67);
 
     printcll(tail);
+    //addd after pos
+    tail= addAfterPos(tail,55,2);
+    printcll(tail);
 }
