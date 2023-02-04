@@ -60,3 +60,49 @@ struct node* dellast(struct node* tail){
     tail=temp;
     return tail;
 }
+
+/*
+Deleting intermidiate node:
+target : delete node at postion pos
+step1: travel till jsut before the node to be delted i.e at pos-1th node
+step2: make a new temp2 pointer which points to node t0 be deleted
+step3: update temp->next with temp2->next value
+step4: free temp2 & assign NUll to it.
+Time Complexity: O(n)
+*/
+struct node* delInter(struct node* tail, int pos){
+    //need to check 2 more conditions if list is empty or have onlly 1 node
+    if (tail==NULL)
+    {
+        return tail;
+    }
+    if (tail->next==tail)
+    {
+        free(tail);
+        tail=NULL;
+        return NULL;
+    }
+    
+    
+    struct node* temp=tail->next;
+    while (pos>2)
+    {
+        temp=temp->next;
+        pos--;
+    }
+    //2
+    struct node* temp2=temp->next;
+    //3
+    temp->next=temp2->next;
+    //handling the case of deleting last node:
+    if (temp2==tail)
+    {
+        tail=temp;
+    }
+    
+    //4
+    free(temp2);
+    temp2=NULL;
+    return tail;    
+    
+}

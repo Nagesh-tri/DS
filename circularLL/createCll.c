@@ -14,7 +14,7 @@ struct node* createCList(struct node* tail){
 
     for ( i = 1; i < n; i++)
     {
-        printf("Enter the element %d\t",i+1);
+    printf("Enter the element %d\t",i+1);
         scanf("%d",&data);
         tail=addAtEnd(tail,data);
     }
