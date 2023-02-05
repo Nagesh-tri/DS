@@ -92,7 +92,9 @@ void print_plym(struct node* head){
     
     
 }
-int main(){
+/* main for creation time
+nesso lect 99
+void main(){
 
     struct node* head =NULL;
     printf("Enter the Polynomial:\n");
@@ -100,6 +102,9 @@ int main(){
     //step 5 : print polynomial (compleate poly with variables)
     print_plym(head);
 }
+*/
+
+
 //_----------------------------OPERATIONS--------------------------
 //Addion--combing like terms(having same variabes and same exponets)--sicne,
 //variable are same we need to compare exponents
@@ -119,6 +124,56 @@ Algorithm:
         insert the remaining terms
 */
 
-struct node* add_poly(struct node* head1,struct node* head2){
+struct node* polyadd(struct node* head1,struct node* head2){
+    struct node* ptr1=head1;
+    struct node* ptr2=head2;
+    struct node* head3=NULL;
+    while (ptr1 !=NULL && ptr2 !=NULL)
+    {
+        if(ptr1->expo == ptr2->expo){
+            float ad= ptr1->coeff+ptr2->coeff;
+            head3 = insert(head3,ad,ptr1->expo);
+            ptr1=ptr1->link;
+            ptr2=ptr2->link;
+        }
+        else if (ptr1->expo > ptr2->expo)
+        {
+            head3= insert(head3,ptr1->coeff,ptr1->expo);
+            ptr1=ptr1->link;
+        }else if (ptr1->expo < ptr2->expo)
+        {
+            head3= insert(head3,ptr2->coeff,ptr2->expo);
+            ptr2=ptr2->link;
+        }
+        
+        
+    }
+    while (ptr1 !=NULL)
+    {
+        head3= insert(head3,ptr1->coeff,ptr1->expo);
+        ptr1=ptr1->link;
+    }
+    while (ptr2 !=NULL)
+    {
+        head3= insert(head3,ptr2->coeff,ptr2->expo);
+        ptr2=ptr2->link;
+    }
+    printf("Added polynomial is : ");
+    print_plym(head3);
+}
+//main for addtion operation
+void main(){
 
+    struct node* head1 =NULL;
+    struct node* head2 =NULL;
+    printf("Enter the First Polynomial:\n");
+    head1= create(head1);
+    print_plym(head1);
+
+    printf("Enter the Second Polynomial:\n");
+    head2= create(head2);
+    print_plym(head2);
+    
+    //add
+    polyadd(head1,head2);
 }
