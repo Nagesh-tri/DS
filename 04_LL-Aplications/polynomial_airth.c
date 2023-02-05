@@ -160,7 +160,7 @@ struct node* polyadd(struct node* head1,struct node* head2){
     }
     printf("Added polynomial is : ");
     print_plym(head3);
-}
+}/*
 //main for addtion operation
 void main(){
 
@@ -176,4 +176,46 @@ void main(){
     
     //add
     polyadd(head1,head2);
+}
+*/
+
+/*
+Multiply: means multiplying their coefficients and adding exponets.
+*/
+
+struct node* product_ply(struct node* head1, struct node* head2){
+    float coff;
+    int rex;
+     
+    struct node* ptr1=head1;
+    struct node* ptr2=head2;
+    struct node* head3=NULL;
+    //for each node
+    while (ptr1 !=NULL)
+    {
+        while(ptr2!=NULL){
+            coff =ptr1->coeff*ptr2->coeff;
+            rex =ptr1->expo+ptr2->expo;
+            head3 = insert(head3, coff,rex);
+            ptr2= ptr2->link;
+        }
+        ptr1=ptr1->link;
+
+    }
+    
+    
+}
+void main(){
+    struct node* head1 =NULL;
+    struct node* head2 =NULL;
+    printf("Enter the First Polynomial:\n");
+    head1= create(head1);
+    print_plym(head1);
+
+    printf("Enter the Second Polynomial:\n");
+    head2= create(head2);
+    print_plym(head2);
+
+    //multiply
+
 }
