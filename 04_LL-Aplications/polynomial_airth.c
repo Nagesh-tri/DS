@@ -178,9 +178,36 @@ void main(){
     polyadd(head1,head2);
 }
 */
-
 /*
+Simplification: just combining like terms of same expression
+*/
+void simpPoly(struct node* head){
+    struct node* temp =NULL;
+    struct node* ptr =NULL;
+    while (ptr->link !=NULL)
+    {
+        if (ptr->expo ==ptr->link->expo)
+        {
+            ptr->coeff=ptr->coeff+ptr->link->expo;
+            temp=  ptr->link;
+            ptr->link=ptr->link->link;
+            free(temp);
+            temp= NULL;
+        }
+        else
+        {
+            ptr= ptr->link;
+        }
+            
+    }
+    printf("After Simplificaion: \n");
+    print_plym(head);
+    
+}
+/*
+
 Multiply: means multiplying their coefficients and adding exponets.
+//the code is oky but we need to improve this : coz some of like terms having repeating which sholuld be simplified
 */
 
 struct node* product_ply(struct node* head1, struct node* head2){
@@ -200,10 +227,9 @@ struct node* product_ply(struct node* head1, struct node* head2){
             ptr2= ptr2->link;
         }
         ptr1=ptr1->link;
-
     }
-    
-    
+    //jsut for better simplification
+    simpPoly(head3);
 }
 void main(){
     struct node* head1 =NULL;
