@@ -7,7 +7,9 @@ struct node{
 struct node* addToEmpty(int data){
     struct node* temp =malloc(sizeof(struct node));
     temp->data=data;
-    temp->link =NULL;
+    temp->link =NULL; /*hbmhhhhghgggghhjhhhhhhhhhhhhghhhgggghgggghghhgfggghgffffgfghhgggg
+    jkjjhhgjggffhffggfhgfhgghjhkuyytghhgkjhkjhjghvghjgjkhjhfghghjg
+    uyuttuytyrtytrrtetrerteteytrytyutuyuikyyyttrtyrdfrrtetrertrtrtuytiuyiouyoiuiuutygyufty*/
     return temp;
 }
 struct node* addAtEnd(struct node* head, int data){

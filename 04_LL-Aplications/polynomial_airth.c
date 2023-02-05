@@ -105,7 +105,10 @@ void main(){
 */
 
 
-//_----------------------------OPERATIONS--------------------------
+//_----------------------------OPERATIONS---------------------------------------------------
+
+
+
 //Addion--combing like terms(having same variabes and same exponets)--sicne,
 //variable are same we need to compare exponents
 //since expression are stored in sorted LL , it would be easier
