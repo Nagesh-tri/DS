@@ -1,0 +1,7 @@
+01. Definition:
+    Stack is a liner data structure in which insertion and deletions are allowed only At
+    the end, called the top of the Stack
+
+02. Examples:
+03. Stack as ADT
+04. Stack Operations
