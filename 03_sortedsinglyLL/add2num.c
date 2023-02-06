@@ -63,7 +63,7 @@ int main(){
 
     printf("\nLinked list representation of first number: \n");
     struct node* head2 =NULL;
-    head2= num_LL(head2,a);
+    head2= num_LL(head2,b);
     print_num(head2);
     return 0;
 }
