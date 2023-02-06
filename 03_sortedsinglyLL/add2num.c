@@ -18,10 +18,11 @@ struct node{
     struct node* link;
 };
 struct node* add_node(struct node* head,int data){
-    struct node* temp =malloc(sizeof(struct node));
-    temp->data=data;
-    temp->link =head;
-    head =temp;
+    struct node* newNode =malloc(sizeof(struct node));
+    newNode->data=data;
+
+    newNode->link =head;
+    head =newNode;
     return head;
 }
 
@@ -40,17 +41,90 @@ void print_num(struct node* head){
         }
         printf("%d",ptr->data);
     }
-    
-    
+    printf("\n");
 }
 struct node* num_LL(struct node* head,int n){
     while (n!=0)
     {
         head=add_node(head,n%10);
-        n =n/10;
+        n=n/10;
     }
-    print_num(head);
+    return head;
  }
+
+/*
+Reverse Number:
+or reversing perticular singly list list
+*/
+struct node* rev_num(struct node* head){
+    if (head==NULL)
+    {
+        return head;
+    }
+
+    struct node* current=NULL;
+    struct node* next=head->link;
+    head->link =NULL;
+    while (next !=NULL)
+    {
+        current =next;
+        next =next->link;
+        current->link =head;
+        head= current;
+    }
+    return head;
+    
+}
+/*
+add numbers: and store in resalant singly list list!
+*/
+struct node* addnum(struct node* head1, struct node* head2){
+    if (head1->data==0)
+    {
+        return head2;
+    }
+    if (head2->data==0)
+    {
+        return head1;
+    }
+    struct node* ptr1 = head1;
+    struct node* ptr2 = head2;
+    struct node* head3 = NULL;
+    int carry=0,sum=0;
+    while (ptr1 || ptr2)
+    {
+        sum=0;
+        if(ptr1)
+            sum += ptr1->data;
+        if(ptr2)
+            sum += ptr2->data;
+        sum +=carry;
+        carry=sum/10;
+        sum=sum%10;
+
+        head3 =add_node(head3,sum);
+        if(ptr1)
+            ptr1=ptr1->link;
+        if(ptr2)
+            ptr2=ptr2->link;
+    }
+    if (carry)
+    {
+        head3=add_node(head3,carry);
+    }
+    return head3;
+}
+
+void back2num(struct node* head){
+    struct node* temp =head;
+    printf("\nresult = ");
+    while (temp)
+    {
+        printf("%d",temp->data);
+        temp =temp->link;
+    }
+    return;
+}
 int main(){
     int a ,b;
     printf("Enter the two numbers: ");
@@ -61,9 +135,23 @@ int main(){
     head1= num_LL(head1,a);
     print_num(head1);
 
-    printf("\nLinked list representation of first number: \n");
+    printf("Linked list representation of first number: \n");
     struct node* head2 =NULL;
     head2= num_LL(head2,b);
     print_num(head2);
+
+    head1=rev_num(head1);
+    head2=rev_num(head2);
+
+    printf("\nReversed NUmbers are: \n");
+    print_num(head1);
+    print_num(head2);
+    //adding
+    struct node* head3 =NULL;
+    head3=addnum(head2,head1);
+    printf("\nResultant LL after adding: \n");
+    print_num(head3);
+
+    back2num(head3);
     return 0;
 }
